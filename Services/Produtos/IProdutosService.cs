@@ -1,4 +1,5 @@
-﻿using controle_produtos_webapi.Models;
+﻿using controle_produtos_webapi.Dtos;
+using controle_produtos_webapi.Models;
 
 namespace controle_produtos_webapi.Services.Produtos
 {
@@ -6,5 +7,6 @@ namespace controle_produtos_webapi.Services.Produtos
     {
         List<ProdutosModel> BuscarTodosProdutos();
         ProdutosModel BuscarProdutoPorId(int id);
+        bool AdicionarProduto(ProdutosDto produtosDto);
     }
 }
