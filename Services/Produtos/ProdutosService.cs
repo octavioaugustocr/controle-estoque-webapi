@@ -16,5 +16,10 @@ namespace controle_produtos_webapi.Services.Produtos
         {
             return _appDbContext.Produtos.ToList();
         }
+
+        public ProdutosModel BuscarProdutoPorId(int id)
+        {
+            return _appDbContext.Produtos.FirstOrDefault(p => p.Id == id);
+        }
     }
 }
