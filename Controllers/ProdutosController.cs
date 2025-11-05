@@ -1,4 +1,5 @@
-﻿using controle_produtos_webapi.Services.Produtos;
+﻿using controle_produtos_webapi.Dtos;
+using controle_produtos_webapi.Services.Produtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,6 +34,20 @@ namespace controle_produtos_webapi.Controllers
                 return BadRequest($"Não foi encontrado nenhum produto com esse ID ({id})!");
 
             return Ok(produto);
+        }
+
+        [HttpPost]
+        public IActionResult AdicionarProduto(ProdutosDto produtosDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = _produtosService.AdicionarProduto(produtosDto);
+
+            if (!result)
+                return BadRequest("Não foi possível adicionar o produto!");
+
+            return Ok("Produto adicionado com sucesso!");
         }
     }
 }
