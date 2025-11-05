@@ -24,5 +24,15 @@ namespace controle_produtos_webapi.Controllers
 
             return Ok(listaProdutos);
         }
+
+        [HttpGet("{id}")]
+        public IActionResult BuscarProdutoPorId(int id)
+        {
+            var produto = _produtosService.BuscarProdutoPorId(id);
+            if (produto == null)
+                return BadRequest($"Não foi encontrado nenhum produto com esse ID ({id})!");
+
+            return Ok(produto);
+        }
     }
 }
