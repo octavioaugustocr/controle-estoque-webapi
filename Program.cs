@@ -1,4 +1,5 @@
 using controle_produtos_webapi.Data;
+using controle_produtos_webapi.Services.Produtos;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,8 @@ builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("AppDbContextConnectionString");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+builder.Services.AddScoped<IProdutosService, ProdutosService>();
 
 var app = builder.Build();
 
